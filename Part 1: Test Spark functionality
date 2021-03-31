@@ -1,0 +1,33 @@
+!apt-get install openjdk-8-jdk-headless -qq > /dev/null
+
+!wget -q https://archive.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz
+
+!tar xf spark-2.4.3-bin-hadoop2.7.tgz
+
+!pip install -q findspark
+
+!pip install pyspark==2.4.5
+
+import os
+
+print (os.environ)
+
+os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
+
+os.environ["SPARK_HOME"] = "/content/spark-2.4.3-bin-hadoop2.7"
+
+import findspark
+
+from pyspark import SparkContext
+
+from pyspark.sql import SparkSession
+
+findspark.init()
+
+sc = SparkContext('local[*]')
+
+from google.colab import drive
+
+drive.mount('/content/gdrive')
+
+!pip install test_helper
