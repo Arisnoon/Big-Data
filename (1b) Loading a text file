@@ -1,0 +1,13 @@
+# Check loading data with sc.textFile
+import os.path
+baseDir = os.path.join('/content/gdrive/MyDrive/data')
+inputPath = os.path.join('cs100', 'lab1', 'shakespeare.txt')
+fileName = os.path.join(baseDir, inputPath)
+
+rawData = sc.textFile(fileName)
+shakespeareCount = rawData.count()
+
+print (shakespeareCount)
+
+# If the text file didn't load properly an AssertionError will be raised
+assert shakespeareCount == 122395
