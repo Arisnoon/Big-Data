@@ -1,0 +1,11 @@
+# Check that Spark is working
+largeRange = sc.parallelize(range(100000))
+reduceTest = largeRange.reduce(lambda a, b: a + b)
+filterReduceTest = largeRange.filter(lambda x: x % 7 == 0).sum()
+
+print (reduceTest)
+print (filterReduceTest)
+
+# If the Spark jobs don't work properly these will raise an AssertionError
+assert reduceTest == 4999950000
+assert filterReduceTest == 714264285
